@@ -1,7 +1,4 @@
-About
-======
-
-# papercup
+# About
 Papercup counter
 
 A visualization of a paper cup counter data.
