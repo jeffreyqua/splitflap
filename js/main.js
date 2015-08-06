@@ -21,9 +21,9 @@ $(window).load(function(){
   });
 
 
-  totalDisplay.splitflap("value", totalNum.toString());
-  yesterdayDisplay.splitflap("value", yesterdayNum.toString());
-  todayDisplay.splitflap("value", todayNum.toString());
+  // totalDisplay.splitflap("value", pad(totalNum+todayNum,6));
+  // yesterdayDisplay.splitflap("value", yesterdayNum);
+  // todayDisplay.splitflap("value", pad(todayNum,4));
 
 
   // Pad some numbers
@@ -37,16 +37,16 @@ $(window).load(function(){
   var myDataRefTotal = new Firebase('https://boiling-torch-7735.firebaseio.com/cups/total');
   myDataRefTotal.on('value', function(snapshot) {
     var totalValue = snapshot.val();
-    totalNum = pad(totalValue,6);
-    totalDisplay.splitflap("value", totalNum);
+    totalNum = totalValue;
+    // totalDisplay.splitflap("value", pad(totalNum+todayNum,6));
   });
 
   // Listen to Yesterday
   var myDataRefYesterday = new Firebase('https://boiling-torch-7735.firebaseio.com/cups/yesterday');
   myDataRefYesterday.on('value', function(snapshot) {
     var yesterdayValue = snapshot.val();
-    yesterdayNum = pad(yesterdayValue,4);
-    yesterdayDisplay.splitflap("value", yesterdayNum);
+    yesterdayNum = yesterdayValue;
+    yesterdayDisplay.splitflap("value", pad(yesterdayNum,4));
     updateCompare();
   });
 
@@ -54,8 +54,9 @@ $(window).load(function(){
   var myDataRefToday = new Firebase('https://boiling-torch-7735.firebaseio.com/cups/today');
   myDataRefToday.on('value', function(snapshot) {
     var todayValue = snapshot.val();
-    todayNum = pad(todayValue,4);
-    todayDisplay.splitflap("value", todayNum);
+    todayNum = todayValue;
+    todayDisplay.splitflap("value", pad(todayNum,4));
+    totalDisplay.splitflap("value", pad(todayNum+totalNum,6));
     updateCompare();
   });
 
