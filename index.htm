@@ -2,150 +2,41 @@
 <html><head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Split-Flap Display Control</title>
+  <link type="text/css" rel="stylesheet" href="css/splitflap.css" />
+  <style>
+      
+      
+  </style>
+</head>
+<body>
+<h1>Paper Cup Counter</h1>
+<p>Total since 06 Aug 2015</p>
+<div id="main">
+  <div id="total" class="segment total"></div>
+</div>
+
+<div id="daily">
+  <div id="yesterday-container">
+    Yesterday
+    <div id="yesterday"></div>
+  </div>
+  <div id="compare"></div>
+  <div id="today-container">
+    Today
+    <div id="today"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<footer>Visit www.akqacupcounter.com</footer>
+</body>
+
   
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
   <script type="text/javascript" src="js/splitflap.js"></script>
-  <script type="text/javascript" src="http:////cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
-  <link type="text/css" rel="stylesheet" href="/css/reset.css" />
-  <link type="text/css" rel="stylesheet" href="css/splitflap.css" />
-  <style>
-      body
-      {
-	  position: absolute;
-	  width: 100%;	  
-	  margin: 0 auto;
-	  height: 300px;
-	  top: 32%;
-	  margin-top: -74px;
-	  text-align: center;
-	  font-size: 30px;
-      }
-      .splitflap
-      {
-	      font-size: 150px;
-	  margin-bottom: 30px;
-      }
-      .splitflap .segment
-      {
-	  font-family: sans-serif;
-	  width: 145px;
-      }
-	  #clock
-	  {
-	  position: fixed;
-	  bottom: 0;
-	  left: 50%;
-		font-size: 90px;
-		margin: 0 0 20px -178px;
-	  }
-	  #clock .segment
-	  {	
-		width: 120px;
-	  }
-	  .twentyfour li
-	  {
-		text-align: right !important;
-	  }
-	  .twentyfour li:after
-	  {
-		content: " ";
-		display: inline-block;
-		width: 10px;
-	  }
-	  .ampm 
-	  {
-		margin-left: -7px !important;
-	  }
-	  .ampm li
-	  {
-		font-size: 30px !important;
-		width: 58px !important;
-		border-radius: 8px !important;
-	  }
-	  .splitflap .ampm .top li
-      {
-	  border-bottom-left-radius: 0 !important;
-	  border-bottom-right-radius: 0 !important;
-      }
-      .splitflap .ampm .bottom li
-      {
-	  border-top-left-radius: 0 !important;
-	  border-top-right-radius: 0 !important;
-      }
+  <script type="text/javascript" src="js/main.js"></script>
 
-      .splitflap .segment:first-child .top li
-      {
-	  border-top-left-radius: 20px;
-      }
-      .splitflap .segment:last-child .top li
-      {
-	  border-top-right-radius: 20px;
-      }
-      .splitflap .segment:first-child .bottom li
-      {
-	  border-bottom-left-radius: 20px;
-      }
-      .splitflap .segment:last-child .bottom li
-      {
-	  border-bottom-right-radius: 20px;
-      } 
-  </style>
-    
-<script type="text/javascript">//<![CDATA[ 
-$(window).load(function(){
-	var disp = $("#splitflap").splitflap({
-			initial: "HELLO",
-			glyphSet: [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",".","?","!",","]
-			});
-	setTimeout(function(){disp.splitflap("value", "WORLD")}, 1900);
-      $("#print").on("submit", function(e)
-	  {
-	    var input = $("#print input");
-	    disp.splitflap("value", input.val());
-	    input.val("");
-	    e.preventDefault();
-	  });
 
-	function clockInput(time)
-	{
-		return [time.toString("h"), time.toString("mm"), time.toString("tt")];
-	}
-
-	var now = new Date();
-	var clock = $("#clock").splitflap({
-			glyphSet:
-				{
-					".hours.twentyfour": $.splitflap.twentyfour,
-					".minutes": $.splitflap.minutes,
-					".ampm": ["AM", "PM"]
-				},
-			initial: clockInput(now)
-			});
-
-  function updateClock() {
-    var now = new Date();
-	setTimeout(updateClock, (62 - now.getSeconds()) * 1000);
-    $("#clock").splitflap("value", clockInput(now));
-  }
-  setTimeout(updateClock, (62 - now.getSeconds()) * 1000);
-
-});//]]>  
-
-</script>
-</head>
-<body>
-<a href="https://github.com/conartist6/splitflap"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-<div id="splitflap">
-</div>
-<form id="print" action="javascript:">
-    display.print("<input type="text" name="text" size="6"></input>");
-</form>
-
-<div id="clock">
-    <div class="segment hours twentyfour"></div><span style="font-size: 1.1em; font-weight: 600">:</span><div class="segment minutes"></div>
-	<div class="segment ampm">
-    </div>
-</div>
-
-</body></html>
+  </html>
