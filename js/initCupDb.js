@@ -1,7 +1,7 @@
 // initialize the database
 function initDbTotals() {
   // check if the current date is accurate
-  var startDate = new Date("2015-08-05");
+  var startDate = new Date("2015-08-06");
   var currentDate = new Date();
   var timeDiff = Math.abs(currentDate.getTime() - startDate.getTime());
   var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1; 
@@ -56,7 +56,7 @@ function calculateFirebaseObjDayTotal(obj) {
 // Calculate Totals up until today
 function calculateTotals() {
   var total = 0;
-  var startDate = new Date("2015-08-05");
+  var startDate = new Date("2015-08-06");
   var currentDate = new Date();
   var timeDiff = Math.abs(currentDate.getTime() - startDate.getTime());
   var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1; 

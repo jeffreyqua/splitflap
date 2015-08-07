@@ -8,6 +8,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
 
+  /* Main Font */
   /*font-family: "Myriad Pro", Arial, sans-serif;*/
   font-family: 'Poiret One', cursive;
   background: #000;
