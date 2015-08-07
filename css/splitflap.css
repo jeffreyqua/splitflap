@@ -1,11 +1,18 @@
+html {
+  width: 100%;
+  min-width: 720px;
+  height: 100%;
+  position: relative;
+}
 body {
   position: absolute;
   width: 100%;
+  left: 0px;
   margin: auto;
-  height: 300px;
   text-align: center;
   font-size: 30px;
   top: 50%;
+  -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 
   /* Main Font */
@@ -13,7 +20,7 @@ body {
   font-family: 'Poiret One', cursive;
   background: #000;
   color: #FFF;
-  height: 768px;
+  height: 728px;
 }
 h1 {
   font-weight: normal;
@@ -111,8 +118,8 @@ h1 {
 }
 
 #main {
-  width: 1024px;
-  margin: 0px auto 100px;
+  width: 100%;
+  margin: 0px auto 50px;
 }
 #total.splitflap .segment:nth-child(3) {
   margin-right: 20px;
@@ -120,13 +127,13 @@ h1 {
 
 
 #daily {
-  width: 1024px;
+  width: 100%;
   margin: 0px auto;
-  padding-left: 62px;
+  /*padding-left: 62px;*/
 }
 
 #daily #yesterday-container {
-  width: 400px;
+  width: 45%;
   height: 160px;
   margin-top: 10px;
   float: left;
@@ -138,7 +145,7 @@ h1 {
   font-size: 90px;
 }
 #daily #compare {
-  width: 200px;
+  width: 10%;
   height: 140px;
   margin-top: 40px;
   float: left;
@@ -146,7 +153,7 @@ h1 {
   line-height: 160px;
 }
 #daily #today-container {
-  width: 400px;
+  width: 45%;
   height: 160px;
   margin-top: 10px;
   float: left;
