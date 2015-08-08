@@ -1,4 +1,6 @@
 $(window).load(function(){
+  startTime();
+
   var currentDate = moment().format("YYYY-MM-DD");
   initDbTotals();
   var previousTotals = 0;
@@ -64,37 +66,23 @@ $(window).load(function(){
     yesterdayNum = obj.paper_cup_totals[yesterdayDateYmd]; // Yesterday
     totalNum = calculateTotalsData(obj.paper_cup_totals); // Total from previous days
     todayNum = calculateFirebaseObjDayTotal(obj.paper_cup_count[todayDateYmd]); // Today
+    var hourArray = calculateFirebaseObjHourTotals(obj.paper_cup_count[todayDateYmd]);
+    // console.log(hourArray);
+
+    for (var i=0; i<hourArray.length; i++) {
+      $("#hour"+i).css('height', 6*hourArray[i]);
+      if (hourArray[i]>0) {
+        $("#hour"+i+ " .value").css('bottom', 6*hourArray[i]+5);
+        $("#hour"+i+ " .value").html(hourArray[i]);
+      }
+      else {
+        $("#hour"+i+ " .value").css('bottom', 5);
+        $("#hour"+i+ " .value").html(0);
+      }
+    }
 
     refreshValues(); // Refresh
   });
-
-
-
-  // Listen to Total
-  // var myDataRefTotal = new Firebase('https://boiling-torch-7735.firebaseio.com/cups/total');
-  // myDataRefTotal.on('value', function(snapshot) {
-  //   var totalValue = snapshot.val();
-  //   totalNum = totalValue;
-  // });
-
-  // // Listen to Yesterday
-  // var myDataRefYesterday = new Firebase('https://boiling-torch-7735.firebaseio.com/cups/yesterday');
-  // myDataRefYesterday.on('value', function(snapshot) {
-  //   var yesterdayValue = snapshot.val();
-  //   yesterdayNum = yesterdayValue;
-  //   yesterdayDisplay.splitflap("value", pad(yesterdayNum,4));
-  //   updateCompare();
-  // });
-
-  // // Listen to Today
-  // var myDataRefToday = new Firebase('https://boiling-torch-7735.firebaseio.com/cups/today');
-  // myDataRefToday.on('value', function(snapshot) {
-  //   var todayValue = snapshot.val();
-  //   todayNum = todayValue;
-  //   todayDisplay.splitflap("value", pad(todayNum,4));
-  //   totalDisplay.splitflap("value", pad(todayNum+totalNum,6));
-  //   updateCompare();
-  // });
 
   function refreshValues() {
     yesterdayDisplay.splitflap("value", pad(yesterdayNum,4));
@@ -117,5 +105,27 @@ $(window).load(function(){
     z = z || '0';
     n = n + '';
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+  }
+
+
+
+  // Clock
+  function startTime() {
+    var today=new Date();
+    var todayFormatted = moment().format("dddd DD MMMM YYYY");
+
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('date').innerHTML = todayFormatted;
+    document.getElementById('clock').innerHTML = h+":"+m+":"+s;
+    var t = setTimeout(function(){startTime()},500);
+  }
+
+  function checkTime(i) {
+      if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
   }
 });

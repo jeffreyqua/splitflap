@@ -159,19 +159,173 @@ h1 {
   float: left;
 }
 
-.clear {
-  clear: both;
-}
 
 #logo {
   position: absolute;
   width: 100px;
   height: 75px;
   right: 40px;
-  bottom: 20px;
+  top: 620px;
   background: url("../images/akqa.png") center center no-repeat;
   background-size: 100%;
 }
-footer {
+.url-footer {
   margin-top: 50px;
+}
+
+.graph-container {
+  height: 600px;
+  width: 100%;
+  min-width: 1024px;
+  margin: 150px auto 50px;
+}
+.graph-container .current-date-time div {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.graph {
+  height: 480px;
+  width: 1000px;
+  margin: 50px auto 0px;
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  position: relative;
+}
+.graph .notches {
+  position: absolute;
+  height: 360px;
+  width: 10px;
+  left: -6px;
+}
+
+.graph .notches .notch {
+  width: 10px;
+  border-top: 1px solid white;
+  margin-bottom: 120px;
+}
+.graph .ylegend {
+  position: absolute;
+  height: 360px;
+  width: 10px;
+  top: -8px;
+  left: -70px;
+}
+
+.graph .ylegend .number {
+  width: 50px;
+  height: 120px;
+  text-align: right;
+  font-size: 18px;
+}
+
+.graph .xlegend {
+  position: absolute;
+  width: 100%;
+  bottom: -25px;
+  left: 0px;
+}
+
+
+.graph .xlegend .hour {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+  font-size: 12px;
+}
+.graph .bars {
+  width: 1000px;
+  height: 480px;
+  position: relative;
+  left: 25px;
+}
+.graph .bars .hour {
+  position: absolute;
+  height: 0px;
+  width: 28px;
+  background: white;
+  bottom: 0px;
+  left: 0px;
+}
+
+.graph .bars .hour .value {
+  position: absolute;
+  bottom: 0px;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+}
+
+.graph .bars .hour:nth-child(2) {
+  left: 40px;
+}
+.graph .bars .hour:nth-child(3) {
+  left: 80px;
+}
+.graph .bars .hour:nth-child(4) {
+  left: 120px;
+}
+.graph .bars .hour:nth-child(5) {
+  left: 160px;
+}
+.graph .bars .hour:nth-child(6) {
+  left: 200px;
+}
+.graph .bars .hour:nth-child(7) {
+  left: 240px;
+}
+.graph .bars .hour:nth-child(8) {
+  left: 280px;
+}
+.graph .bars .hour:nth-child(9) {
+  left: 320px;
+}
+.graph .bars .hour:nth-child(10) {
+  left: 360px;
+}
+.graph .bars .hour:nth-child(11) {
+  left: 400px;
+}
+.graph .bars .hour:nth-child(12) {
+  left: 441px;
+}
+.graph .bars .hour:nth-child(13) {
+  left: 481px;
+}
+.graph .bars .hour:nth-child(14) {
+  left: 523px;
+}
+.graph .bars .hour:nth-child(15) {
+  left: 564px;
+}
+.graph .bars .hour:nth-child(16) {
+  left: 604px;
+}
+.graph .bars .hour:nth-child(17) {
+  left: 644px;
+}
+.graph .bars .hour:nth-child(18) {
+  left: 684px;
+}
+.graph .bars .hour:nth-child(19) {
+  left: 724px;
+}
+.graph .bars .hour:nth-child(20) {
+  left: 764px;
+}
+.graph .bars .hour:nth-child(21) {
+  left: 804px;
+}
+.graph .bars .hour:nth-child(22) {
+  left: 844px;
+}
+.graph .bars .hour:nth-child(23) {
+  left: 883px;
+}
+.graph .bars .hour:nth-child(24) {
+  left: 924px;
+}
+
+.clear {
+  clear: both;
 }

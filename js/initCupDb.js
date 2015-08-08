@@ -53,6 +53,120 @@ function calculateFirebaseObjDayTotal(obj) {
   return dayTotal;
 }
 
+
+// Calculate Data Totals for a specific day object raw data node
+function calculateFirebaseObjHourTotals(obj) {
+  var hourTotal0 = 0;
+  var hourTotal1 = 0;
+  var hourTotal2 = 0;
+  var hourTotal3 = 0;
+  var hourTotal4 = 0;
+  var hourTotal5 = 0;
+  var hourTotal6 = 0;
+  var hourTotal7 = 0;
+  var hourTotal8 = 0;
+  var hourTotal9 = 0;
+  var hourTotal10 = 0;
+  var hourTotal11 = 0;
+  var hourTotal12 = 0;
+  var hourTotal13 = 0;
+  var hourTotal14 = 0;
+  var hourTotal15 = 0;
+  var hourTotal16 = 0;
+  var hourTotal17 = 0;
+  var hourTotal18 = 0;
+  var hourTotal19 = 0;
+  var hourTotal20 = 0;
+  var hourTotal21 = 0;
+  var hourTotal22 = 0;
+  var hourTotal23 = 0;
+
+  var deltaLimit = 5;
+  for (var key in obj) {
+    var differential = obj[key].differential;
+    if (Math.abs(differential) <= deltaLimit) {
+      // console.log(differential);
+      // ignore any changes more than 5 cups
+      var currentTime = obj[key].timestamp;
+      var currentHour = moment(currentTime).format("HH");
+      // console.log(currentHour);
+      if (currentHour == '00') {
+        hourTotal0 -= differential;
+      }
+      else if (currentHour == '01') {
+        hourTotal1 -= differential;
+      }
+      else if (currentHour == '02') {
+        hourTotal2 -= differential;
+      }
+      else if (currentHour == '03') {
+        hourTotal3 -= differential;
+      }
+      else if (currentHour == '04') {
+        hourTotal4 -= differential;
+      }
+      else if (currentHour == '05') {
+        hourTotal5 -= differential;
+      }
+      else if (currentHour == '06') {
+        hourTotal6 -= differential;
+      }
+      else if (currentHour == '07') {
+        hourTotal7 -= differential;
+      }
+      else if (currentHour == '08') {
+        hourTotal8 -= differential;
+      }
+      else if (currentHour == '09') {
+        hourTotal9 -= differential;
+      }
+      else if (currentHour == '10') {
+        hourTotal10 -= differential;
+      }
+      else if (currentHour == '11') {
+        hourTotal11 -= differential;
+      }
+      else if (currentHour == '12') {
+        hourTotal12 -= differential;
+      }
+      else if (currentHour == '13') {
+        hourTotal13 -= differential;
+      }
+      else if (currentHour == '14') {
+        hourTotal14 -= differential;
+      }
+      else if (currentHour == '15') {
+        hourTotal15 -= differential;
+      }
+      else if (currentHour == '16') {
+        hourTotal16 -= differential;
+      }
+      else if (currentHour == '17') {
+        hourTotal17 -= differential;
+      }
+      else if (currentHour == '18') {
+        hourTotal18 -= differential;
+      }
+      else if (currentHour == '19') {
+        hourTotal19 -= differential;
+      }
+      else if (currentHour == '20') {
+        hourTotal20 -= differential;
+      }
+      else if (currentHour == '21') {
+        hourTotal21 -= differential;
+      }
+      else if (currentHour == '22') {
+        hourTotal22 -= differential;
+      }
+      else if (currentHour == '23') {
+        hourTotal23 -= differential;
+      }
+    }
+  }
+  return [hourTotal0, hourTotal1, hourTotal2, hourTotal3, hourTotal4, hourTotal5, hourTotal6, hourTotal7, hourTotal8, hourTotal9, hourTotal10, hourTotal11, hourTotal12, hourTotal13, hourTotal14, hourTotal15, hourTotal16, hourTotal17, hourTotal18, hourTotal19, hourTotal20, hourTotal21, hourTotal22, hourTotal23];
+}
+
 // Calculate Totals up until today
 function calculateTotals() {
   var total = 0;
