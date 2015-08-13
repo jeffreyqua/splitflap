@@ -77,7 +77,7 @@ $(window).load(function(){
       }
       else {
         $("#hour"+i+ " .value").css('bottom', 5);
-        $("#hour"+i+ " .value").html(0);
+        $("#hour"+i+ " .value").html(hourArray[i]);
       }
     }
 
