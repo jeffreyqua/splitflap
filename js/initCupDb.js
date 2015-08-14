@@ -193,9 +193,15 @@ function calculateTotals() {
 
 function calculateTotalsData(obj) {
   var total = 0;
+  var startDateYmd = "2015-08-06";
 
   for (var key in obj) {
-    total += obj[key];
+    //console.log(key, startDateYmd<=key);
+
+    // Only count totals if it's above the actual start date
+    if (startDateYmd<=key) {
+      total += obj[key];
+    }
   }
 
   return total;

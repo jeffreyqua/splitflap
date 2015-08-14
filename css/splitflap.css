@@ -14,16 +14,20 @@ body {
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-
-  /* Main Font */
-  /*font-family: "Myriad Pro", Arial, sans-serif;*/
-  font-family: 'Poiret One', cursive;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   background: #000;
   color: #FFF;
   height: 728px;
 }
+
+
+
+
 h1 {
+  font-family: 'Poiret One', cursive;
   font-weight: normal;
+  font-size: 60px;
 }
 .splitflap {
   font-size: 120px;
@@ -35,7 +39,7 @@ h1 {
   display: inline-block;
   margin: 0 4px;
   font-weight: bold;
-  width: 100px;
+  width: 105px;
 }
 
 .splitflap:after {
@@ -119,7 +123,7 @@ h1 {
 
 #main {
   width: 100%;
-  margin: 0px auto 50px;
+  margin: -15px auto 30px;
 }
 #total.splitflap .segment:nth-child(3) {
   margin-right: 20px;
@@ -134,27 +138,32 @@ h1 {
 
 #daily #yesterday-container {
   width: 45%;
-  height: 160px;
+  height: 50px;
   margin-top: 10px;
   float: left;
 }
 
+#today.splitflap, #yesterday.splitflap {
+  /*margin-top: -25px;*/
+
+}
+
 #today.splitflap .segment, #yesterday.splitflap .segment {
   margin-top: 10px;
-  width: 70px;
-  font-size: 90px;
+  width: 85px;
+  font-size: 130px;
 }
 #daily #compare {
   width: 10%;
-  height: 140px;
-  margin-top: 40px;
+  height: 110px;
+  margin-top: 70px;
   float: left;
-  font-size: 90px;
-  line-height: 160px;
+  font-size: 120px;
+  line-height: 110px;
 }
 #daily #today-container {
   width: 45%;
-  height: 160px;
+  height: 110px;
   margin-top: 10px;
   float: left;
 }
@@ -165,12 +174,14 @@ h1 {
   width: 100px;
   height: 75px;
   right: 40px;
-  top: 620px;
+  top: 650px;
   background: url("../images/akqa.png") center center no-repeat;
   background-size: 100%;
 }
 .url-footer {
-  margin-top: 50px;
+  margin-top: 72px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 .graph-container {
@@ -229,7 +240,7 @@ h1 {
 
 .graph .xlegend .hour {
   display: inline-block;
-  width: 30px;
+  width: 32px;
   text-align: center;
   font-size: 12px;
 }
@@ -324,6 +335,29 @@ h1 {
 }
 .graph .bars .hour:nth-child(24) {
   left: 924px;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+  stroke: #FFF;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #FFF;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
 }
 
 .clear {
