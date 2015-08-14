@@ -2,6 +2,14 @@ $(window).load(function(){
   startTime();
 
   var currentDate = moment().format("YYYY-MM-DD");
+
+  // Set the monthly view variables
+  var todayDate = new Date();
+  var currentYM = moment().format("YYYY-MM");
+  var currentYMtext = moment().format("MMMM YYYY");
+  $("#current-month").html(currentYMtext);
+  refreshMonthlyGraph(); // Refresh the graph
+
   initDbTotals();
   var previousTotals = 0;
   // console.log(previousTotals);
@@ -81,6 +89,7 @@ $(window).load(function(){
       }
     }
 
+
     refreshValues(); // Refresh
   });
 
@@ -127,5 +136,43 @@ $(window).load(function(){
   function checkTime(i) {
       if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
       return i;
+  }
+
+  function refreshMonthlyGraph() {
+    var currentMonthArray = [];
+    // get totals for currentYM year/month
+    var ref = new Firebase('https://papercup22.firebaseio.com/paper_cup_totals');
+
+    ref.once('value', function(snapshot) {
+      var totalsObj = snapshot.val();
+
+      snapshot.forEach(function(data) {
+        // If current month, then add:
+        var currentKey = data.key();
+        if (currentKey.indexOf(currentYM) == 0) {
+          var dayValue = currentKey.substr(8);
+          currentMonthArray.push({'day':dayValue,'value':data.val()});
+        }
+        // total += data.val();
+      });
+
+      // update the monthly graph using values in currentMonthArray
+      $("#month_bars .day .bar").css("height", 0);
+
+      currentMonthArray.forEach(function(el){
+        $("#day"+el.day+" .bar").css('height',el.value);
+
+        if (el.value>0) {
+          $("#day"+el.day+ " .value").css('bottom', el.value+5);
+          $("#day"+el.day+ " .value").html(el.value);
+        }
+        else {
+          $("#day"+el.day+ " .value").css('bottom', el.value);
+          $("#day"+el.day+ " .value").html(el.value);
+        }
+      });
+    });
+    // Unauthenticate the client
+    ref.unauth();
   }
 });
