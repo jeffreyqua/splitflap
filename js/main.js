@@ -1,13 +1,13 @@
 $(window).load(function(){
   startTime();
 
+  var startDateYM = "2015-07"; // when earliest data starts
   var currentDate = moment().format("YYYY-MM-DD");
 
   // Set the monthly view variables
   var todayDate = new Date();
   var currentYM = moment().format("YYYY-MM");
   var currentYMtext = moment().format("MMMM YYYY");
-  $("#current-month").html(currentYMtext);
   refreshMonthlyGraph(); // Refresh the graph
 
   initDbTotals();
@@ -93,6 +93,19 @@ $(window).load(function(){
     refreshValues(); // Refresh
   });
 
+  // Initialize button clicks for month
+  $("#prev-month .button").click(function() {
+    mGraphPrevMonth();
+    refreshMonthlyGraph();
+  });
+
+  $("#next-month .button").click(function() {
+    mGraphNextMonth();
+    refreshMonthlyGraph();
+  });
+
+  // Functions
+
   function refreshValues() {
     yesterdayDisplay.splitflap("value", pad(yesterdayNum,4));
     todayDisplay.splitflap("value", pad(todayNum,4))
@@ -138,6 +151,35 @@ $(window).load(function(){
       return i;
   }
 
+  function mGraphNextMonth() {
+    if (currentYM < moment().format("YYYY-MM")){
+      var curYear = currentYM.substr(0,4);
+      var curMonth = parseInt(currentYM.substr(5));
+
+      var nextMonthDate = new Date();
+      nextMonthDate.setFullYear(curYear);
+      nextMonthDate.setMonth(curMonth + 1);
+      nextMonth = nextMonthDate.getMonth();
+
+      currentYM = nextMonthDate.getFullYear()+'-'+pad(nextMonth,2);
+      currentYMtext = moment(nextMonthDate.getFullYear()+pad(nextMonth,2)+'01',"YYYYMMDD").format("MMMM YYYY");
+    }
+  }
+  function mGraphPrevMonth() {
+    if (currentYM > startDateYM) {
+      var curYear = currentYM.substr(0,4);
+      var curMonth = parseInt(currentYM.substr(5));
+
+      var prevMonthDate = new Date();
+      prevMonthDate.setFullYear(curYear);
+      prevMonthDate.setMonth(curMonth - 1);
+      prevMonth = prevMonthDate.getMonth();
+
+      currentYM = prevMonthDate.getFullYear()+'-'+pad(prevMonth,2);
+      currentYMtext = moment(prevMonthDate.getFullYear()+pad(prevMonth,2)+'01',"YYYYMMDD").format("MMMM YYYY");
+    }
+  }
+
   function refreshMonthlyGraph() {
     var currentMonthArray = [];
     // get totals for currentYM year/month
@@ -159,6 +201,7 @@ $(window).load(function(){
       // update the monthly graph using values in currentMonthArray
       $("#month_bars .day .bar").css("height", 0);
 
+      $("#month_bars .day .value").html('').css('bottom',0);
       currentMonthArray.forEach(function(el){
         $("#day"+el.day+" .bar").css('height',el.value);
 
@@ -171,8 +214,28 @@ $(window).load(function(){
           $("#day"+el.day+ " .value").html(el.value);
         }
       });
+
+      // check if current month, if so, hide future months
+      if (currentYM >= moment().format("YYYY-MM")){
+        $("#next-month .button").fadeOut();
+      }
+      else {
+        $("#next-month .button").fadeIn(1000);
+      }
+
+      if (currentYM <= startDateYM) {
+        $("#prev-month .button").fadeOut();
+      }
+      else {
+        $("#prev-month .button").fadeIn(1000);
+      }
+
+
+      $("#current-month").html(currentYMtext);
     });
     // Unauthenticate the client
     ref.unauth();
   }
+
+
 });
